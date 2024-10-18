@@ -3,18 +3,31 @@
   <img src="https://tele-med-pilot.vercel.app/assets/logo.png" alt="TeleMedPilot Icon" width="100" />
 </div>
 
-# TeleMedPilot
+# Telemedicine App
+
+
 
 ## **Your Virtual Healthcare Companion**
 
-TeleMedPilot provides a comprehensive platform to connect patients with certified doctors through secure online consultations. From booking appointments to managing medical records, our goal is to make healthcare accessible and convenient for everyone.
-
+Overview TeleMedPilot is a telemedicine platform designed to connect patients with certified doctors via secure online consultations. It simplifies healthcare by offering features such as video calls, appointment booking, secure messaging, and medical record management, making healthcare more accessible and convenient.
 
 ---
+
+
+## [Live Demo](https://telemed-mansy.vercel.app/)
+## [Video Demo](https://drive.google.com/file/d/1jLJBq4sM2xFOySg1NZpFaYpqA95pb9vL/view?usp=sharing)
+
 
 ![Screenshot of TeleMedPilot](homepage.png)
 > Home page showcasing the doctor search and booking functionality.
 
+## Features
+
+- Video Calls (Agora): Seamless video consultations between doctors and patients.
+- Doctor and Patient Signup: Doctors can manage their availability, and patients can easily book appointments.
+- Appointment Scheduling: Doctors can add, edit, or delete time slots, while patients can browse available slots and book appointments.
+- Medical Records: Patients have access to their prescriptions, test results, and visit history.
+- Secure Messaging: Patients can communicate with doctors for follow-ups or additional questions.
 
 ## **Why Choose TeleMedPilot?**
 
@@ -140,14 +153,6 @@ TeleMedPilot follows a modular data structure to accommodate patient-doctor inte
 - **Users (Patients, Doctors, Admins)**: Stores user profile details, including role-based access.
 - **Appointments**: Tracks bookings, appointment times, and medical summaries.
 - **Medical Records**: Securely manages patient history, prescriptions, and test results.
-
----
-
-
-### **Screenshots and Mockups**
-
-![Screenshot of TeleMedPilot](homepage.png)
-> Home page showcasing the doctor search and booking functionality.
 
 
 ---   
