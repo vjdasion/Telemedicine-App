@@ -9,7 +9,7 @@
 
 ## **Your Virtual Healthcare Companion**
 
-Overview TeleMedPilot is a telemedicine platform designed to connect patients with certified doctors via secure online consultations. It simplifies healthcare by offering features such as video calls, appointment booking, secure messaging, and medical record management, making healthcare more accessible and convenient.
+A telemedicine platform designed to connect patients with certified doctors via secure online consultations. It simplifies healthcare by offering features such as video calls, appointment booking, secure messaging, and medical record management, making healthcare more accessible and convenient.
 
 ---
 
