@@ -18,7 +18,7 @@ const Appointments: React.FC = () => {
           "Content-type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     )
       .then((response) => response.json())
       .then((response) => setAppointments(response.appointments));

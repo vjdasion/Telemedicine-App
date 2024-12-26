@@ -78,7 +78,7 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({
       time_slot_code: convertDateToCode(
         getDay(selectedDate.date),
         selectedSlot,
-        selectedType
+        selectedType,
       ),
     };
     console.log("body: ", body);
@@ -104,8 +104,8 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({
       // }
 
       // Close the dialog and show success message
-      
-      setTimeout(()=>{
+
+      setTimeout(() => {
         setShowConfirmDialog(false);
         toast.current.show({
           severity: "success",
@@ -114,8 +114,7 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({
           className:
             "bg-green-600 ml-2 text-white font-semibold rounded-lg shadow-lg p-3",
         });
-      },2000)
-      
+      }, 2000);
     } catch (error) {
       toast.current.show({
         severity: "error",

@@ -69,7 +69,7 @@ interface DoctorCardProps {
 
 const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
   const [doctorRating, setDoctorRating] = useState<number | null>(
-    doctor.rating || 0
+    doctor.rating || 0,
   );
 
   // Convert buffer data to base64 image
@@ -128,8 +128,8 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
           </div>
         </div>
       </div>
-      { doctor.interests && <DoctorInterests interests={doctor.interests} />}
-      { doctor.nearestApp && <DoctorAvailability date={doctor.nearestApp} />}
+      {doctor.interests && <DoctorInterests interests={doctor.interests} />}
+      {doctor.nearestApp && <DoctorAvailability date={doctor.nearestApp} />}
       <DoctorFees fees60min={doctor.fees60min} fees30min={doctor.fees30min} />
       <div className="flex justify-center space-x-12">
         <button className="text-xs md:text-md text-[#60A899] hover:text-[#4b8377] py-1 px-1 md:px-0 md:py-2 rounded-xl w-full hover:scale-110 transition">

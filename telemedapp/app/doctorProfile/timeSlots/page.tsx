@@ -1,9 +1,7 @@
 import TimeSlots from "@/components/doctorProfile/TimeSlots";
 
 function TimeSlotsPage() {
-  return (
-    <TimeSlots />
-  );
+  return <TimeSlots />;
 }
 
 export default TimeSlotsPage;

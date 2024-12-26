@@ -1,9 +1,7 @@
 import EditProfile from "@/components/doctorProfile/EditProfile";
 
 function EditProfilePage() {
-  return (
-    <EditProfile />
-  );
+  return <EditProfile />;
 }
 
 export default EditProfilePage;

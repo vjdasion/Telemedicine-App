@@ -27,7 +27,7 @@ export default function ProfileLayout({
             <div className="flex-initial flex flex-col justify-center items-center my-5 bg-white h-fit w-fit p-4 rounded-xl">
               {userImage}
               <p className="text-blue-500 mb-1 font-semibold">
-                  {`Dr. ${profileData?.firstName.toUpperCase()} ${profileData?.lastName.toUpperCase()}`}
+                {`Dr. ${profileData?.firstName.toUpperCase()} ${profileData?.lastName.toUpperCase()}`}
               </p>
             </div>
             <button

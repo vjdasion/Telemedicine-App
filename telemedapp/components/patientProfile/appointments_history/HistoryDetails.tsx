@@ -35,11 +35,11 @@ const HistoryDetails: React.FC<HistoryDetailsProps> = ({ appointment }) => {
             `${
               process.env.NEXT_PUBLIC_SERVER_NAME
             }/patient/appointment/appointmentdetails/${Number(
-              appointment.appointment_id
+              appointment.appointment_id,
             )}`,
             {
               headers: { Authorization: `Bearer ${token}` },
-            }
+            },
           );
 
           if (!response.ok)
@@ -154,7 +154,7 @@ const HistoryDetails: React.FC<HistoryDetailsProps> = ({ appointment }) => {
                           Diagnosis: {result.appointment_diagnosis} <br />
                           Report: {result.appointment_report} <br />
                         </p>
-                      )
+                      ),
                     )}
                   </div>
                 )}
@@ -174,7 +174,7 @@ const HistoryDetails: React.FC<HistoryDetailsProps> = ({ appointment }) => {
                           {formatDate(med.medication_end_date)} <br />
                           Note: {med.medication_note}
                         </p>
-                      )
+                      ),
                     )}
                   </div>
                 )}

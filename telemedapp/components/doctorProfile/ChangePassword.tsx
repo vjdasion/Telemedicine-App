@@ -123,7 +123,7 @@ function ChangePassword() {
           },
           body: JSON.stringify(formData),
           mode: "cors",
-        }
+        },
       );
 
       if (!response.ok) {

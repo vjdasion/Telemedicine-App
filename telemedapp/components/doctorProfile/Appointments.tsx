@@ -21,7 +21,7 @@ const Appointments = () => {
           "Content-type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     )
       .then((response) => response.json())
       .then((response) => {

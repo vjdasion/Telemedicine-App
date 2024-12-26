@@ -79,7 +79,7 @@ const DoctorBooking = () => {
             `${process.env.NEXT_PUBLIC_SERVER_NAME}/patient/appointment/Availabilities/${doctor.id}`,
             {
               headers: { Authorization: `Bearer ${token}` },
-            }
+            },
           );
           if (!response.ok) throw new Error("Failed to fetch availability");
 
@@ -92,7 +92,7 @@ const DoctorBooking = () => {
           console.log("data: ", data);
 
           const formattedDates = formatDoctorAvailabilities(
-            data.available_slots
+            data.available_slots,
           );
 
           setAvailableDates(formattedDates);
@@ -107,7 +107,9 @@ const DoctorBooking = () => {
     const staticAvailableSlots = Array.from({ length: 20 }, (_, index) => {
       const date = new Date(Date.now() + index * 24 * 60 * 60 * 1000);
       const dayCode = Object.keys(dayCodes).find(
-        (key) => dayCodes[key] === date.toLocaleDateString("en-US", { weekday: "long" })
+        (key) =>
+          dayCodes[key] ===
+          date.toLocaleDateString("en-US", { weekday: "long" }),
       );
 
       return Array.from({ length: 5 }, (_, slotIndex) => {
@@ -125,23 +127,23 @@ const DoctorBooking = () => {
     if (doctor) fetchDoctorAvailability();
   }, [doctor]);
 
-    // Fetch patient appointments
-    useEffect(() => {
-      const token = localStorage.getItem("jwt");
-      fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_NAME}/patient/appointment/appointmentsHistory`,
-        {
-          method: "GET",
-          mode: "cors",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-        .then((response) => response.json())
-        .then((response) => setAppointments(response?.appointments || []));
-    }, [appointmentState]);
+  // Fetch patient appointments
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_NAME}/patient/appointment/appointmentsHistory`,
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+      .then((response) => response.json())
+      .then((response) => setAppointments(response?.appointments || []));
+  }, [appointmentState]);
 
   const handleDurationChange = (duration: number) =>
     setSelectedDuration(duration);

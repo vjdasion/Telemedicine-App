@@ -415,7 +415,7 @@ function EditProfile() {
           },
           body: JSON.stringify(sentObj),
           mode: "cors",
-        }
+        },
       );
 
       if (!response.ok) {

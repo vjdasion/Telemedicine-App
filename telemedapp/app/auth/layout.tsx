@@ -6,8 +6,6 @@ import React from "react";
 import "../globals.css";
 import { useRouter } from "next/navigation";
 
-
-
 export default function AuthLayout({
   children,
 }: {

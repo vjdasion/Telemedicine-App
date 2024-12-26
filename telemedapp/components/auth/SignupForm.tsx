@@ -566,54 +566,55 @@ function SignUpForm() {
     //   ? `${process.env.NEXT_PUBLIC_SERVER_NAME}/patient/register`
     //   : `${process.env.NEXT_PUBLIC_SERVER_NAME}/doctor/register`;
 
-    const payload = userType === "Patient"
-      ? {
-        fName: formData.firstName,
-        lName: formData.lastName,
-        email: formData.email,
-        password: formData.password,
-        gender: formData.gender,
-        phone: formData.phone,
-        birthDate: formData.birthDate
-          ? format(new Date(formData.birthDate), "yyyy-MM-dd")
-          : null,
-      }
-      : {
-        personalInfo: {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          birthdate: formData.birthDate
-            ? format(new Date(formData.birthDate), "yyyy-MM-dd")
-            : null,
-          city: "",
-          country: "",
-          email: formData.email,
-          gender: formData.gender,
-          location: "",
-          password: formData.password,
-          phone: formData.phone,
-          speciality: "",
-        },
-        certificates: doctorCertificates,
-        experiences: doctorExperiences,
-        interests: doctorInterests,
-        Languages: [],
-      };
+    const payload =
+      userType === "Patient"
+        ? {
+            fName: formData.firstName,
+            lName: formData.lastName,
+            email: formData.email,
+            password: formData.password,
+            gender: formData.gender,
+            phone: formData.phone,
+            birthDate: formData.birthDate
+              ? format(new Date(formData.birthDate), "yyyy-MM-dd")
+              : null,
+          }
+        : {
+            personalInfo: {
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              birthdate: formData.birthDate
+                ? format(new Date(formData.birthDate), "yyyy-MM-dd")
+                : null,
+              city: "",
+              country: "",
+              email: formData.email,
+              gender: formData.gender,
+              location: "",
+              password: formData.password,
+              phone: formData.phone,
+              speciality: "",
+            },
+            certificates: doctorCertificates,
+            experiences: doctorExperiences,
+            interests: doctorInterests,
+            Languages: [],
+          };
 
     // try {
-      // const response = await fetch(endpoint, {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(payload),
-      //   mode: "cors",
-      // });
+    // const response = await fetch(endpoint, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(payload),
+    //   mode: "cors",
+    // });
 
-      // if (!response.ok) {
-      //   setSignedUp(false);
-      //   setError(true);
-      //   setLoading(false);
-      //   throw new Error("Failed to register");
-      // }
+    // if (!response.ok) {
+    //   setSignedUp(false);
+    //   setError(true);
+    //   setLoading(false);
+    //   throw new Error("Failed to register");
+    // }
     setTimeout(async () => {
       // Static token and user data
       const users = {
@@ -638,14 +639,12 @@ function SignUpForm() {
       setSignedUp(true);
       setLoading(false);
       router.replace("/");
-  //   } catch (error) {
-  //     console.error("Error During Signup:", error);
-  //     setLoading(false);
-  //   }
+      //   } catch (error) {
+      //     console.error("Error During Signup:", error);
+      //     setLoading(false);
+      //   }
     }, 2000); // Simulate loading delay
-
   };
-
 
   const patientImageClass = `w-20 h-20 border-2 border-solid rounded-full ${
     userType === "Patient" ? "border-blue-500" : ""

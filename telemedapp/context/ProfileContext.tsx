@@ -60,7 +60,10 @@ export const ProfileProvider = ({
       localStorage.clear();
       router.push("/auth/signin");
     } else if (storedProfile) {
-      const parsedProfile = userRole === "Patient" ? JSON.parse(storedProfile) : JSON.parse(storedProfile).personalInfo;
+      const parsedProfile =
+        userRole === "Patient"
+          ? JSON.parse(storedProfile)
+          : JSON.parse(storedProfile).personalInfo;
       setProfileData({
         firstName: parsedProfile.fName || parsedProfile.firstName || "",
         lastName: parsedProfile.lName || parsedProfile.lastName || "",

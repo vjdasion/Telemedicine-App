@@ -53,7 +53,7 @@ const Requests = () => {
         headers: {
           Authorization: "Bearer " + token,
         },
-      }
+      },
     )
       .then((response) => response.json())
       .then((response) => setRequests(() => response))
@@ -61,7 +61,7 @@ const Requests = () => {
   }, [profileData]);
 
   const handleResolveRequest = async (
-    e: React.MouseEvent<HTMLButtonElement>
+    e: React.MouseEvent<HTMLButtonElement>,
   ) => {
     e.preventDefault();
     const buttonName = e.currentTarget.name;
@@ -79,7 +79,7 @@ const Requests = () => {
             Authorization: "Bearer " + token,
           },
           mode: "cors",
-        }
+        },
       );
 
       if (!response.ok) {
@@ -142,7 +142,7 @@ const Requests = () => {
                             {" " +
                               request.doctor_availability_day_hour.slice(
                                 11,
-                                16
+                                16,
                               )}{" "}
                             | {request.appointment_duration + " mins"}
                           </p>

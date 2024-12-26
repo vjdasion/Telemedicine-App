@@ -7,7 +7,7 @@ import RatingComp from "@/components/common/RatingComp";
 const DoctorInfo = ({ doctor }: { doctor: Doctor }) => {
   const userImage = <FaUserCircle className="h-10 w-10 text-[#035fe9]" />;
   const [doctorRating, setDoctorRating] = useState<number | null>(
-    doctor.rating || 0
+    doctor.rating || 0,
   );
 
   return (

@@ -72,7 +72,7 @@ const Doctors = () => {
           unFormatDate(doctor.nearestApp).getFullYear() ===
             today.getFullYear() &&
           unFormatDate(doctor.nearestApp).getMonth() === today.getMonth() &&
-          unFormatDate(doctor.nearestApp).getDate() === today.getDate()
+          unFormatDate(doctor.nearestApp).getDate() === today.getDate(),
       );
     }
 
@@ -81,25 +81,25 @@ const Doctors = () => {
       filtered = filtered.filter(
         (doctor: any) =>
           unFormatDate(doctor.nearestApp) >= unFormatDate(startDate) &&
-          unFormatDate(doctor.nearestApp) <= unFormatDate(endDate)
+          unFormatDate(doctor.nearestApp) <= unFormatDate(endDate),
       );
     }
 
     if (filters.isOnline) {
       filtered = filtered.filter(
-        (doctor: any) => doctor.isOnline === filters.isOnline
+        (doctor: any) => doctor.isOnline === filters.isOnline,
       );
     }
 
     if (filters.speciality.length > 0) {
       filtered = filtered.filter((doctor: any) =>
-        filters.speciality.includes(doctor.title)
+        filters.speciality.includes(doctor.title),
       );
     }
 
     if (filters.gender) {
       filtered = filtered.filter(
-        (doctor: any) => doctor.gender === filters.gender
+        (doctor: any) => doctor.gender === filters.gender,
       );
     }
 
@@ -107,7 +107,7 @@ const Doctors = () => {
       const ratingValue = parseFloat(filters.rating);
       if (!isNaN(ratingValue)) {
         filtered = filtered.filter(
-          (doctor: any) => doctor.rating >= ratingValue
+          (doctor: any) => doctor.rating >= ratingValue,
         );
       }
     }
@@ -117,20 +117,20 @@ const Doctors = () => {
         filtered = filtered.filter(
           (doctor: any) =>
             doctor.fees60min >= filters.price[0] &&
-            doctor.fees60min <= filters.price[1]
+            doctor.fees60min <= filters.price[1],
         );
       }
     }
 
     if (filters.country.length > 0) {
       filtered = filtered.filter((doctor: any) =>
-        filters.country.includes(doctor.country)
+        filters.country.includes(doctor.country),
       );
     }
 
     if (filters.language.length > 0) {
       filtered = filtered.filter((doctor: any) =>
-        doctor.language.some((lang: string) => filters.language.includes(lang))
+        doctor.language.some((lang: string) => filters.language.includes(lang)),
       );
     }
 
@@ -138,12 +138,12 @@ const Doctors = () => {
       switch (filters.sort) {
         case "ascFees":
           filtered = filtered.sort(
-            (a: any, b: any) => a.fees60min - b.fees60min
+            (a: any, b: any) => a.fees60min - b.fees60min,
           );
           break;
         case "descFees":
           filtered = filtered.sort(
-            (a: any, b: any) => b.fees60min - a.fees60min
+            (a: any, b: any) => b.fees60min - a.fees60min,
           );
           break;
         case "rating":

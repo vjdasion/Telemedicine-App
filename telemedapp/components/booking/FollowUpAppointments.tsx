@@ -44,7 +44,7 @@ const FollowUpAppointments: React.FC<FollowUpAppointmentsProps> = ({
             setAppointmentState(
               appointments && appointments.length > 0
                 ? "Follow_up"
-                : "First_time"
+                : "First_time",
             );
             handleFollowUpClick();
           }}

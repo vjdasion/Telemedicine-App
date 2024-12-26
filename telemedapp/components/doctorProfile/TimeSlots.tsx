@@ -39,15 +39,15 @@ function TimeSlots() {
   const [dayDate, setDayDate] = useState(days[0]);
 
   const [timesChosen, setTimesChosen] = useState(
-    Object.fromEntries(days.map((day) => [day, new Set<string>()]))
+    Object.fromEntries(days.map((day) => [day, new Set<string>()])),
   );
 
   const [oldTimesId, setOldTimesId] = useState<TimeIdMapping>(
-    Object.fromEntries(days.map((day) => [day, { "": "" }]))
+    Object.fromEntries(days.map((day) => [day, { "": "" }])),
   );
 
   const [oldTimes, setOldTimes] = useState<{ [key: string]: Set<string> }>(
-    Object.fromEntries(days.map((day) => [day, new Set<string>()]))
+    Object.fromEntries(days.map((day) => [day, new Set<string>()])),
   );
 
   const [oldTimesTemp, setOldTimesTemp] = useState<{
@@ -107,7 +107,7 @@ function TimeSlots() {
       Object.entries(tempTimes).map(([day, times]) => [
         day,
         new Set(times.map(({ time }) => time)),
-      ])
+      ]),
     );
 
     setOldTimes(() => tempTimesForSet);
@@ -180,15 +180,15 @@ function TimeSlots() {
 
   useEffect(() => {
     setTimesChosen(() =>
-      Object.fromEntries(days.map((day) => [day, new Set<string>()]))
+      Object.fromEntries(days.map((day) => [day, new Set<string>()])),
     );
 
     setOldTimes(() =>
-      Object.fromEntries(days.map((day) => [day, new Set<string>()]))
+      Object.fromEntries(days.map((day) => [day, new Set<string>()])),
     );
 
     setOldTimesId(() =>
-      Object.fromEntries(days.map((day) => [day, { "": "" }]))
+      Object.fromEntries(days.map((day) => [day, { "": "" }])),
     );
 
     if (oldTimesTemp || oldTimes) {
@@ -303,7 +303,7 @@ function TimeSlots() {
   const handleChangeToggle = () => {
     // Reset selection when toggling between add and delete mode
     setTimesChosen(() =>
-      Object.fromEntries(days.map((day) => [day, new Set<string>()]))
+      Object.fromEntries(days.map((day) => [day, new Set<string>()])),
     );
     setToggleChecked(() => !toggleChecked); // Toggle between modes
   };
@@ -312,7 +312,7 @@ function TimeSlots() {
     e.preventDefault();
 
     let sentObj: Record<string, string[]> = Object.fromEntries(
-      days.map((day) => [day, [] as string[]])
+      days.map((day) => [day, [] as string[]]),
     );
 
     for (const [key, value] of Object.entries(timesChosen)) {
@@ -331,8 +331,8 @@ function TimeSlots() {
     const filteredSlots = codedSlots.filter(
       (slot) =>
         !Object.values(oldTimesId).some((day) =>
-          Object.values(day).includes(slot)
-        )
+          Object.values(day).includes(slot),
+        ),
     );
 
     console.log("All slots: ", codedSlots);
@@ -352,7 +352,7 @@ function TimeSlots() {
             },
             body: JSON.stringify(filteredSlots),
             mode: "cors",
-          }
+          },
         );
 
         if (!response.ok) {
@@ -394,7 +394,7 @@ function TimeSlots() {
             },
             body: JSON.stringify(sentTimesId),
             mode: "cors",
-          }
+          },
         );
 
         const result = await response.json();
@@ -462,8 +462,8 @@ function TimeSlots() {
                   ? "Deleting..."
                   : "Adding..."
                 : toggleChecked
-                ? "Delete"
-                : "Add"}
+                  ? "Delete"
+                  : "Add"}
             </button>
             <div className="flex items-center flex-row gap-4 justify-center">
               <label className="flex items-center">

@@ -1,9 +1,7 @@
 import ViewPaymentInfo from "@/components/patientProfile/ViewPaymentInfo";
 
 function ViewPaymentInfoPage() {
-  return (
-    <ViewPaymentInfo />
-  );
+  return <ViewPaymentInfo />;
 }
 
 export default ViewPaymentInfoPage;

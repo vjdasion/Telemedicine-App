@@ -7,7 +7,6 @@ import { FaLink } from "react-icons/fa";
 import DocumentComponent from "./DocumentComponent";
 import SearchBar from "../SearchBar/searchbar";
 
-
 const PatientDocuments = () => {
   const [documents, setDocuments] = React.useState<any[]>([]);
   const getIcon = (type: string) => {

@@ -51,8 +51,8 @@ const WeekCalendar: React.FC<WeekCalendarProps> = ({
       const uniqueSlots = existingDate
         ? Array.from(
             new Map(
-              existingDate.slots.map((slot) => [slot.time, slot])
-            ).values()
+              existingDate.slots.map((slot) => [slot.time, slot]),
+            ).values(),
           ).filter((slot) => {
             // Check if the slot's time is booked
             const slotDateTime = `${dateStr} ${slot.time}`;
@@ -112,8 +112,8 @@ const WeekCalendar: React.FC<WeekCalendarProps> = ({
               selectedDate?.date === dateObj.date
                 ? "bg-green-500 hover:bg-green-600 text-white"
                 : dateObj.slots.length > 0
-                ? "bg-gray-200 hover:bg-gray-300 text-gray-800"
-                : "bg-gray-50 hover:bg-gray-100 text-gray-500"
+                  ? "bg-gray-200 hover:bg-gray-300 text-gray-800"
+                  : "bg-gray-50 hover:bg-gray-100 text-gray-500"
             }`}
             onClick={() => handleDateSelect(dateObj)}
           >

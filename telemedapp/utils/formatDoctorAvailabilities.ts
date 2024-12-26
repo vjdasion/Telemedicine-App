@@ -61,10 +61,10 @@ export const convertDateToCode = (day: string, time: string, type: string) => {
   console.log(day, time, type);
   const dayCode = Object.keys(dayCodes).find((key) => dayCodes[key] === day);
   const timeCode = Object.keys(timeSlotCodes).find(
-    (key) => timeSlotCodes[key] === time
+    (key) => timeSlotCodes[key] === time,
   );
   const typeCode = Object.keys(typeCodes).find(
-    (key) => typeCodes[key] === type
+    (key) => typeCodes[key] === type,
   );
 
   return `${dayCode}_${timeCode}_${typeCode}`;

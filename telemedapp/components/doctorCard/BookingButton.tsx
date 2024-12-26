@@ -27,7 +27,7 @@ const BookingButton = ({ doctor }: { doctor: any }) => {
         rating: doctor.rating,
         numReviews: doctor.numReviews,
       };
-      
+
       const encodedDoctor = encodeURIComponent(JSON.stringify(doctorBooking)); // Encode the doctor object
       // router.push(`/booking?doctor=${encodedDoctor}`);
       router.push(`doctors/${doctorBooking.id}?doctorBooking=${encodedDoctor}`);

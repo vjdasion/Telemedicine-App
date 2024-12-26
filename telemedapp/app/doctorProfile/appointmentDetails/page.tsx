@@ -28,7 +28,7 @@ const AppointmentDetailsPage = () => {
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_SERVER_NAME}/doctor/appointmentDetails/${appId}`,
-          { headers, mode: "cors" }
+          { headers, mode: "cors" },
         );
         if (!response.ok) {
           throw new Error("Failed to fetch appointment details");
@@ -128,7 +128,7 @@ const AppointmentDetailsPage = () => {
                           </p>
                         </div>
                       </div>
-                    )
+                    ),
                   )
                 ) : (
                   <div className="flex flex-col space-y-4">
