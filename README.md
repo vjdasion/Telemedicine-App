@@ -14,7 +14,7 @@ A telemedicine platform designed to connect patients with certified doctors via 
 ---
 
 
-## [Live Demo](https://telemed-mansy.vercel.app/)
+## [Live Demo](https://telemedicine-mansy.vercel.app)
 ## [Video Demo](https://drive.google.com/file/d/1jLJBq4sM2xFOySg1NZpFaYpqA95pb9vL/view?usp=sharing)
 
 
@@ -51,7 +51,7 @@ A telemedicine platform designed to connect patients with certified doctors via 
 
 ## **Live Demo**
 
-Visit the live website: [TeleMedPilot](https://telemed-mansy.vercel.app)
+Visit the live website: [TeleMedPilot](https://telemedicine-mansy.vercel.app)
 
 ---
 
