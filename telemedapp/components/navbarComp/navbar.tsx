@@ -34,27 +34,30 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("jwt");
-    const storedRole = localStorage.getItem("userRole");
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("jwt") || null;
+      const storedRole = localStorage.getItem("userRole") || null;
 
-    if (storedToken) {
-      setToken(storedToken);
-      setUserRole(storedRole);
-    } else {
-      setToken(null);
-      setUserRole(null);
-    }
+      if (storedToken) {
+        setToken(storedToken);
+        setUserRole(storedRole);
+      } else {
+        setToken(null);
+        setUserRole(null);
+      }
 
-    const expiryDate = localStorage.getItem("expiryDate");
-    if (
-      expiryDate &&
-      Math.floor(new Date().getTime() / 1000) > Number(expiryDate)
-    ) {
-      localStorage.clear();
-      setToken(null);
-      setUserRole(null);
+      const expiryDate = localStorage.getItem("expiryDate") || null;
+      if (
+        expiryDate &&
+        Math.floor(new Date().getTime() / 1000) > Number(expiryDate)
+      ) {
+        localStorage.clear();
+        setToken(null);
+        setUserRole(null);
+      }
     }
-  }, [pathname !== "/", localStorage.getItem("jwt")]);
+  }, [pathname !== "/"]);
+
 
   return (
     <nav className="h-14 bg-white border border-b-[1px] sticky top-0 z-10 pb-8">
