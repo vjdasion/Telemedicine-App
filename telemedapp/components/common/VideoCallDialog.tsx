@@ -22,7 +22,7 @@ const VideoCallDialog: React.FC<VideoCallDialogProps> = ({
   const [username, setUsername] = useState("guest"); // Manages the user's name
   const [isClient, setIsClient] = useState(false); // Ensures client-side rendering
 
-  const agoraAppId = process.env.NEXT_PUBLIC_AGORA_APP_ID;
+  const agoraAppId = 'cd1f3f29ef86458a8fce0a2a3c5b192b';
 
   // Handle missing Agora App ID
   useEffect(() => {

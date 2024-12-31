@@ -7,36 +7,53 @@ import { useProfile } from "@/context/ProfileContext"; // Ensure correct import 
 
 const Appointments = () => {
   const { profileData } = useProfile();
-  const [appointments, setAppointments] = useState([]);
+  const [appointments, setAppointments] = useState<Array<{
+    id: number;
+    doctor_availability_day_hour: string;
+    appointment_duration: number;
+    appointment_type: string;
+    appointment_complaint: string;
+    appointment_settings_type: string;
+    patient_first_name: string;
+    patient_last_name: string;
+  }>>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let token = localStorage.getItem("jwt");
-    fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_NAME}/Doctor/profile/appointments`,
-      {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
+    setTimeout(async () => {
+    setLoading(true);
+    const storedAppointments = localStorage.getItem("appointments");
+    if (storedAppointments) {
+      setAppointments(JSON.parse(storedAppointments));
+    }
+    else {
+      setAppointments([
+        {
+          id: 1,
+          doctor_availability_day_hour: "2022-01-01T10:00:00",
+          appointment_duration: 30,
+          appointment_type: "First_time",
+          appointment_complaint: "N/A",
+          appointment_settings_type: "Video",
+          patient_first_name: "John",
+          patient_last_name: "Doe",
         },
-      },
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.length > 0) {
-          setAppointments(response);
-        } else {
-          setAppointments([]); // Set to an empty array if there are no appointments
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching appointments: ", error);
-        setAppointments([]); // Handle error by setting an empty array
-      })
-      .finally(() => setLoading(false));
-  }, [profileData]);
+        {
+          id: 2,
+          doctor_availability_day_hour: "2022-01-02T11:00:00",
+          appointment_duration: 15,
+          appointment_type: "Follow_up",
+          appointment_complaint: "N/A",
+          appointment_settings_type: "Audio",
+          patient_first_name: "Jane",
+          patient_last_name: "Doe",
+        },
+      ]);
+    }
+      setLoading(false);
+  }, 2000); // Simulate loading delay
+
+}, [profileData]);
   if (loading) {
     return (
       <div className="flex justify-center my-4">

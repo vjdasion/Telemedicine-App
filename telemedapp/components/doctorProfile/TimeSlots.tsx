@@ -156,26 +156,17 @@ function TimeSlots() {
   };
 
   useEffect(() => {
-    token = localStorage.getItem("jwt");
+    // Simulate fetching timeslots from localStorage
+    setLoading(true);
+    const storedTimeslots = localStorage.getItem("timeslots");
+    const timeslots = storedTimeslots ? JSON.parse(storedTimeslots) : []; // Fallback to empty array
 
-    fetch(`${process.env.NEXT_PUBLIC_SERVER_NAME}/doctor/availability/view`, {
-      mode: "cors",
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        const timeslots = response.timeslots || []; // Ensure there's a fallback for timeslots
+    console.log("Local Storage view Response: ", timeslots); // Log the response
 
-        console.log("API view Response: ", timeslots); // Log the API response for inspection
+    // Process the timeslots directly
+    convertCodedToDates(timeslots);
 
-        // Process the timeslots directly
-        timeslots;
-        convertCodedToDates(timeslots);
-      })
-      .finally(() => setLoading(false));
+    setLoading(false);
   }, [loading]);
 
   useEffect(() => {
@@ -307,19 +298,20 @@ function TimeSlots() {
     );
     setToggleChecked(() => !toggleChecked); // Toggle between modes
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Prepare the object for deletion and adding
     let sentObj: Record<string, string[]> = Object.fromEntries(
-      days.map((day) => [day, [] as string[]]),
+      days.map((day) => [day, [] as string[]])
     );
 
     for (const [key, value] of Object.entries(timesChosen)) {
-      sentObj[key] = Array.from(value); // Convert set to array
+      sentObj[key] = Array.from(value); // Convert Set to Array
     }
 
     const codedSlots = createCodedSlots(sentObj);
+
     if (codedSlots.length > 0) {
       setLoadingButton(true);
     } else {
@@ -327,90 +319,67 @@ function TimeSlots() {
       return;
     }
 
-    // Check for duplicates before sending the request
-    const filteredSlots = codedSlots.filter(
-      (slot) =>
-        !Object.values(oldTimesId).some((day) =>
-          Object.values(day).includes(slot),
-        ),
-    );
+    setTimeout(async () => {
+      if (!toggleChecked) {
+        // Add new slots to localStorage
+        try {
+          const storedTimeslots = localStorage.getItem("timeslots");
+          const existingTimeslots = storedTimeslots ? JSON.parse(storedTimeslots) : [];
 
-    console.log("All slots: ", codedSlots);
-    console.log("Filtered slots: ", filteredSlots);
-    if (!toggleChecked) {
-      // Add time slots
-      try {
-        const token = localStorage.getItem("jwt");
+          // Add new filtered slots
+          const updatedTimeslots = [...existingTimeslots, ...codedSlots];
 
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_NAME}/doctor/availability/add`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(filteredSlots),
-            mode: "cors",
-          },
-        );
+          localStorage.setItem("timeslots", JSON.stringify(updatedTimeslots));
 
-        if (!response.ok) {
-          throw new Error("Failed to add time slots");
+          console.log("Successfully added new time slots:", codedSlots);
+          setLoadingButton(false);
+          setLoading(true);
+        } catch (error) {
+          console.error("Error while adding time slots:", error);
+          setLoadingButton(false);
         }
+      } else {
+        // Delete specified slots from localStorage
+        try {
+          const storedTimeslots = localStorage.getItem("timeslots");
+          const existingTimeslots = storedTimeslots ? JSON.parse(storedTimeslots) : [];
 
-        console.log("Successfully added new time slots:", filteredSlots);
-        setLoadingButton(false);
-        setLoading(true);
-      } catch (error) {
-        console.error("Error while adding time slots:", error);
-        setLoadingButton(false);
-      }
-    } else {
-      // Delete time slots
-      let sentTimesId: string[] = [];
-
-      for (const [key, value] of Object.entries(sentObj)) {
-        value.forEach((timeEntry) => {
-          let currObj = oldTimesId[key as keyof typeof oldTimesId];
-          let currEntry = currObj[timeEntry as keyof typeof currObj];
-          if (currEntry) {
-            sentTimesId.push(currEntry); // Collect IDs for deletion
+          // Collect IDs for deletion from sentObj
+          const sentTimesId: string[] = [];
+          for (const [key, value] of Object.entries(sentObj)) {
+            value.forEach((timeEntry) => {
+              const currObj = oldTimesId[key as keyof typeof oldTimesId];
+              const currEntry = currObj[timeEntry as keyof typeof currObj];
+              if (currEntry) {
+                sentTimesId.push(currEntry);
+              }
+            });
           }
-        });
-      }
-      console.log("Time slots to delete:", sentTimesId);
 
-      try {
-        const token = localStorage.getItem("jwt");
+          console.log("Time slots to delete:", sentTimesId);
 
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_NAME}/doctor/availability/delete`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(sentTimesId),
-            mode: "cors",
-          },
-        );
+          // Remove all slots with IDs in `sentTimesId`
+          const updatedTimeslots = existingTimeslots.filter(
+            (slot: { id: string }) => !sentTimesId.includes(slot.id)
+          );
 
-        const result = await response.json();
-        console.log("Response from server:", result);
+          // If `sentTimesId` is empty, clear all
+          if (sentTimesId.length === 0) {
+            localStorage.removeItem("timeslots");
+            console.log("All time slots deleted from localStorage");
+          } else {
+            localStorage.setItem("timeslots", JSON.stringify(updatedTimeslots));
+            console.log("Deleted time slots:", sentTimesId);
+          }
 
-        if (!response.ok) {
-          throw new Error("Failed to delete time slots");
+          setLoading(true);
+          setLoadingButton(false);
+        } catch (error) {
+          console.error("Error while deleting time slots:", error);
+          setLoadingButton(false);
         }
-
-        setLoading(true);
-        setLoadingButton(false);
-      } catch (error) {
-        console.error("Error while deleting time slots:", error);
-        setLoadingButton(false);
       }
-    }
+    }, 2000); // Simulate loading delay
   };
 
   return (
