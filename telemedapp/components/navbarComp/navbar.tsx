@@ -64,8 +64,8 @@ const Navbar = () => {
       <div className="max-w-full md:max-w-[90%] min-[1130px]:max-w-[75%] flex justify-between items-center mx-auto">
         <Link href="/">
           <div className="flex justify-center items-center">
-            <img className="w-14 h-14" src="/assets/logo.png" alt="logo" />
-            <span className="text-base md:text-xl">TeleMedPilot</span>
+            <img className="w-25 h-8" src="/assets/logo.png" alt="logo" />
+            <span className="text-base md:text-xl"></span>
           </div>
         </Link>
         <div className="hidden min-[1130px]:inline-block justify-between space-x-4 text-[#4d4d4f] text-sm font-light">
@@ -95,7 +95,7 @@ const Navbar = () => {
           </button>
         </div>
         <div className="flex justify-between items-center space-x-0 md:space-x-4 min-[1130px]:space-x-6">
-          <a className="cursor-pointer font-medium">العربيه</a>
+          <a className="cursor-pointer font-medium"></a>
           {!token ? (
             <>
               <Link href="/auth/signin">

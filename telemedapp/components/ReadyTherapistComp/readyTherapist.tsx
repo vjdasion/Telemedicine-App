@@ -10,7 +10,7 @@ const ReadyTherapist = () => {
         </div>
         <div className="flex justify-between items-center">
           <div>
-            <img className="w-20 h-20" src="/assets/logo.png" alt="" />
+            <img className="w-55 h-20" src="/assets/longlogo.png" alt="" />
           </div>
           <div className="flex items-center text-xs md:text-xl">
             <GoDotFill className="rounded-full bg-lime-600 max-w-1 max-h-1 p-1 mr-4" />

@@ -13,7 +13,7 @@ const Banner = () => {
             anytime anywhere!
           </h1>
           <p className="text-base md:text-lg font-semibold text-[#343a40]">
-            TeleMedPilot is number one in online Arabic Telemedicine worldwide.
+          Dasion Telemedicine: The World's #1 AI Telemedicine, Powered by Geometric United Machine Learning and Data-to-Decision Intelligence.
           </p>
         </div>
         <div className="flex flex-col items-center space-y-4 md:max-w-[80%]">
