@@ -9,7 +9,7 @@ const Banner = () => {
           <p className="text-xs text-[#343a40] font-light">YOU TALK WE HELP</p>
           <h1 className="text-black text-5xl md:text-6xl font-light">
             Talk{" "}
-            <span className="font-bold">to your doctor online privately </span>{" "}
+            <span className="font-bold">to your doctor or AI avatar online privately </span>{" "}
             anytime anywhere!
           </h1>
           <p className="text-base md:text-lg font-semibold text-[#343a40]">
